@@ -1,19 +1,8 @@
 <p id="notice"><%= notice %></p>
+<h1>
+  <%= @project.name %> <span>'s project | <%= @category.name %> </span>
+</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
 
-<p>
-  <strong>Complete:</strong>
-  <%= @category.complete %>
-</p>
 
-<p>
-  <strong>Timelimit:</strong>
-  <%= @category.timelimit %>
-</p>
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to 'Back', project_categories_path %>

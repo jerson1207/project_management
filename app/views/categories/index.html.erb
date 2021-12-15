@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Categories</h1>
+<%= link_to 'Back', projects_path %>
+<h1><%= @project.name %> <span>'s category</span></h1>
 
 <table>
   <thead>
     <tr>
+      <th>id</th>
       <th>Name</th>
       <th>Complete</th>
       <th>Timelimit</th>
@@ -15,12 +16,13 @@
   <tbody>
     <% @categories.each do |category| %>
       <tr>
+        <td><%= category.id %></td>
         <td><%= category.name %></td>
         <td><%= category.complete %></td>
         <td><%= category.timelimit %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', project_category_tasks_path(@project, category) %></td>
+        <td><%= link_to 'Edit', edit_project_category_path(@project, category) %></td>
+        <td><%= link_to 'Destroy', project_category_path(@project, category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Category', new_category_path %>
+<%= link_to "New Category", new_project_category_path(@project) %>
