@@ -1,10 +1,10 @@
 <%= form_with(model: [@project, @category]) do |form| %>
   <% if @category.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
 
       <ul>
-        <% category.errors.each do |error| %>
+        <% @category.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -17,13 +17,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :complete %>
-    <%= form.check_box :complete %>
-  </div>
-
-  <div class="field">
-    <%= form.label :timelimit %>
-    <%= form.check_box :timelimit %>
+    <%= form.label :deadline %>
+    <%= form.date_select :deadline, :include_blank => true %>
   </div>
 
   <div class="actions">

@@ -31,7 +31,29 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @category = @project.categories.find(params[:category_id])
     @task = @category.tasks.new(task_params)
-
+    category_deadline = Task.task_deadline(params[:category_id])
+    project_deadline = Category.project_deadline(params[:project_id])
+    if @task.deadline.present? && category_deadline != nil   
+      if (category_deadline < @task.deadline) && (project_deadline < @task.deadline) 
+        @project.deadline = @task.deadline
+        @project.save
+      elsif category_deadline < @task.deadline 
+        @category.deadline = @task.deadline
+        @category.save
+      end
+    elsif @task.deadline.present? && category_deadline == nil &&  project_deadline == nil
+      @category.deadline = @task.deadline
+      @category.save
+      @project.deadline = @task.deadline
+      @project.save
+    elsif @task.deadline.present? && category_deadline == nil &&  project_deadline != nil
+      if project_deadline < @task.deadline 
+        @category.deadline = @task.deadline
+        @category.save
+        @project.deadline = @task.deadline
+        @project.save
+      end
+    end
     respond_to do |format|
       if @task.save
         format.html { redirect_to project_category_tasks_path, notice: "Task was successfully created." }
@@ -81,6 +103,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :complete, :timelimit, :category_id)
+      params.require(:task).permit(:name, :complete, :timelimit, :deadline, :category_id)
     end
 end

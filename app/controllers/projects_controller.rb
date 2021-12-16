@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to project_categories_path, notice: "Project was successfully created." }
+        format.html { redirect_to project_categories_path(@project.id), notice: "Project was successfully created." }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,6 +36,7 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
+
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to projects_path, notice: "Project was successfully updated." }
@@ -64,6 +65,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.require(:project).permit(:name, :complete, :timelimit)
+      params.require(:project).permit(:name, :complete, :timelimit, :deadline)
     end
 end

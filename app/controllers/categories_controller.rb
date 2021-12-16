@@ -29,11 +29,25 @@ class CategoriesController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @category = @project.categories.new(category_params)
+
+    project_deadline = Category.project_deadline(params[:project_id])
+
+    if @category.deadline.present? && project_deadline != nil     
+      if project_deadline < @category.deadline
+        @project.deadline = @category.deadline
+        @project.save
+      end
+    elsif @category.deadline.present? && project_deadline == nil 
+      @project.deadline = @category.deadline
+      @project.save
+    end
+
     if @category.save
-      redirect_to project_categories_path, notice: "Category was successfully created." 
+      redirect_to project_category_tasks_path(@project.id, @category.id), notice: "Category was successfully created." 
     else
       render :new, status: :unprocessable_entity
     end
+
 
   end
 
@@ -41,6 +55,16 @@ class CategoriesController < ApplicationController
   def update
     @project = Project.find(params[:project_id])
     @category = @project.categories.find(params[:id])
+    project_deadline = Category.project_deadline(params[:project_id])
+    if @category.deadline.present? && project_deadline != nil     
+      if project_deadline < @category.deadline
+        @project.deadline = @category.deadline
+        @project.save
+      end
+    elsif @category.deadline.present? && project_deadline == nil 
+      @project.deadline = @category.deadline
+      @project.save
+    end
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to project_categories_path, notice: "Category was successfully updated." }
@@ -73,6 +97,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:name, :complete, :timelimit, :project_id)
+      params.require(:category).permit(:name, :complete, :timelimit, :deadline, :project_id)
     end
 end
