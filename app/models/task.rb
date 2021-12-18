@@ -13,4 +13,5 @@ class Task < ApplicationRecord
       return nil
     end
   end
+
 end

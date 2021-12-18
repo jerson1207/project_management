@@ -8,4 +8,13 @@ module ProjectsHelper
       return "No deadline setup"
     end
   end
+
+  def pro_progress(number)
+    if number == nil 
+      return "No category listed"
+    else
+      return number 
+    end
+  end
+
 end

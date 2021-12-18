@@ -56,6 +56,30 @@ class TasksController < ApplicationController
     end
     respond_to do |format|
       if @task.save
+        task_complete = @category.tasks.where(complete: true).count.to_f
+        task_total = @category.tasks.all.count.to_f  
+        category_result = task_complete/task_total
+        @category.progress = (category_result * 100)
+        @category.save
+        if @category.progress == 100
+          @category.complete = true 
+          @category.save    
+        else
+          @category.complete = false 
+          @category.save
+        end
+        cat_complete = @project.categories.where(complete: true).count.to_f
+        cat_total = @project.categories.all.count.to_f
+        project_result = cat_complete/cat_total
+        @project.progress = (project_result * 100)
+        @project.save
+        if @project.progress == 100
+          @project.complete = true
+          @project.save
+        else
+          @project.complete = false
+          @project.save
+        end
         format.html { redirect_to project_category_tasks_path, notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
@@ -69,6 +93,53 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
+        category_deadline = Task.task_deadline(params[:category_id])
+        project_deadline = Category.project_deadline(params[:project_id])
+        if @task.deadline.present? && category_deadline != nil   
+          if (category_deadline < @task.deadline) && (project_deadline < @task.deadline) 
+            @project.deadline = @task.deadline
+            @project.save
+          elsif category_deadline < @task.deadline 
+            @category.deadline = @task.deadline
+            @category.save
+          end
+        elsif @task.deadline.present? && category_deadline == nil &&  project_deadline == nil
+          @category.deadline = @task.deadline
+          @category.save
+          @project.deadline = @task.deadline
+          @project.save
+        elsif @task.deadline.present? && category_deadline == nil &&  project_deadline != nil
+          if project_deadline < @task.deadline 
+            @category.deadline = @task.deadline
+            @category.save
+            @project.deadline = @task.deadline
+            @project.save
+          end
+        end
+        task_complete = @category.tasks.where(complete: true).count.to_f
+        task_total = @category.tasks.all.count.to_f  
+        category_result = task_complete/task_total
+        @category.progress = (category_result * 100)
+        @category.save
+        if @category.progress == 100
+          @category.complete = true 
+          @category.save    
+        else
+          @category.complete = false 
+          @category.save
+        end
+        cat_complete = @project.categories.where(complete: true).count.to_f
+        cat_total = @project.categories.all.count.to_f
+        project_result = cat_complete/cat_total
+        @project.progress = (project_result * 100)
+        @project.save
+        if @project.progress == 100
+          @project.complete = true
+          @project.save
+        else
+          @project.complete = false
+          @project.save
+        end
         format.html { redirect_to project_category_tasks_path, notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
       else
@@ -77,6 +148,7 @@ class TasksController < ApplicationController
       end
     end
   end
+
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy

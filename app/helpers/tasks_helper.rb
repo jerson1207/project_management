@@ -7,5 +7,5 @@ module TasksHelper
       return date
     end
   end
-
+ 
 end

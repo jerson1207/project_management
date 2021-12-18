@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :projects do
     resources :categories do
-      resources :tasks
+      resources :tasks do
+        get 'status', to: "toggles#status", as: "status"
+      end
+      
     end
   end
   

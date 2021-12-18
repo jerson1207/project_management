@@ -5,11 +5,13 @@
 <h2>Deadline: <%= project_deadline(@project.id) %></h2>
 
 <table>
+<caption><h1>Category</h1></caption>
   <thead>
     <tr>
       <th>Name</th>
       <th>Deadline</th>
-      <th>Timelimit</th>
+      <th>complete</th>
+      <th>progress</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +21,8 @@
       <tr>
         <td><%= category.name %></td>
         <td><%= category_deadline(@project.id, category.id)%></td>
-        <td><%= category.timelimit %></td>
+        <td><%= category.complete %></td>
+        <td><%= cat_progress(category.progress) %> </td>
         <td><%= link_to 'Show', project_category_tasks_path(@project, category) %></td>
         <td><%= link_to 'Edit', edit_project_category_path(@project, category) %></td>
         <td><%= link_to 'Destroy', project_category_path(@project, category), method: :delete, data: { confirm: 'Are you sure?' } %></td>

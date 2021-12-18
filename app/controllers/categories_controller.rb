@@ -29,9 +29,7 @@ class CategoriesController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @category = @project.categories.new(category_params)
-
     project_deadline = Category.project_deadline(params[:project_id])
-
     if @category.deadline.present? && project_deadline != nil     
       if project_deadline < @category.deadline
         @project.deadline = @category.deadline
@@ -47,8 +45,6 @@ class CategoriesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
-
   end
 
   # PATCH/PUT /categories/1 or /categories/1.json

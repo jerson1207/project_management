@@ -30,8 +30,12 @@ module CategoriesHelper
     end
   end
 
-  def project_set_deadline
-    
+  def cat_progress(number)
+    if number == nil 
+      return " no task"
+    else
+      return number 
+    end
   end
 
 end
