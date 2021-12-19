@@ -1,3 +1,53 @@
-// Place all the styles related to the Tasks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.card-task {
+  width: 300px;
+  height: 175px;
+  border: 1px solid black;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  .top {
+    display: flex;
+    flex: 15%;
+    .deadline {
+      border: 1px solid black;
+
+      flex: 90%;
+      color: red;
+      background-color: black;
+      clip-path: polygon(0 0, 60% 0%, 40% 100%, 0% 100%);
+    }
+    .status {
+      border: 1px solid black;
+      background-color: black;
+      color: red;
+      flex: 10%;
+    }
+  }
+  .middle {
+    flex: 70%;
+    margin: auto;
+    padding: 15px;
+    text-align: justify;
+  
+    // border: 1px solid black;
+  }
+  .bottom {
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 30% 100%);
+    background-color: black;
+    color: red;
+    flex: 15%;
+    font-size: 12px;
+    ul {
+      margin: auto;
+      transform: translate(50%, 50%);
+    }
+    ul li{
+      display: inline;  
+    }
+    ul:first-child {
+      margin-left: 15%;
+    }
+  }
+}

@@ -2,7 +2,7 @@ class Category < ApplicationRecord
   belongs_to :project
   has_many :tasks, dependent: :destroy
   validates :name, presence: true
-  validates :name, length: { maximum: 500 }
+  validates :name, length: { in: 6..20  }
   validates :name, uniqueness:  { case_sensitive: false, message: " already exist" }
   validate :deadline_cannot_be_in_the_past 
   validate :deadline_cannot_be_less_than_task
@@ -25,11 +25,15 @@ class Category < ApplicationRecord
       end      
     end
   end
-
-  def task_max_deadline
+#return date if total task 0
+  def task_max_deadline 
     task_deadline = Category.find(self.id).tasks.where(deadline: Task.maximum("deadline"))
     if task_deadline.count != 0
-      task_deadline.first.deadline
+      if task_deadline.first.deadline != nil
+        return task_deadline.first.deadline  
+      else
+        return false 
+      end   
     else
       return false
     end

@@ -16,7 +16,6 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    
     @project = Project.find(params[:project_id])
     @category = Project.find(params[:project_id]).categories.find(params[:category_id])
     @task = @category.tasks.new

@@ -1,3 +1,149 @@
-// Place all the styles related to the Projects controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.card {
+  width: 300px;
+  height: 175px;
+  border: 1px solid black;
+  display: flex;
+  margin: 0;
+  .left {
+    width: 50%;   
+    h2 {
+      font-size: 14px;
+      border: 1px solid black;
+      margin-top: 0;
+      background-color: black;
+      color: red;
+      width: 110%;
+      clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+      order: 1;
+    }
+    h1 {
+      font-size: 18px;
+      order: 9;
+      margin: 30% 10%;
+      
+    }
+  }
+  .right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    position: relative;
+   
+    .progress {
+      margin: auto;
+      height: 85%;
+      order: 1;
+      h1 {
+        font-size: 28px;  
+        text-align: center;   
+      }
+      h6 {
+        text-align: center;
+      }
+
+    }
+    .actions {
+      position: absolute;
+      order: 2;
+      height: 15%;
+      width: 150%;
+      right: 0;
+      margin-bottom: 0;
+      clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+      background-color: black;
+      color: red;
+      display: flex;  
+      border: 1px solid black;
+      ul {
+        margin: auto;
+      }
+      ul li{
+        display: inline;  
+      }
+      ul:first-child {
+        margin-left: 25%;
+      }
+
+
+    
+    }
+  }
+}
+
+.card-create {
+  width: 300px;
+  height: 175px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+
+  .top-design {
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+    border: 1px solid black;
+    margin-top: 0;
+    background-color: black;
+    width: 60%;
+    height: 15%;
+    h3 {
+      color: red;
+      text-align: center;
+      margin: auto;
+    }
+  }
+
+  .card-main {
+    height: 70%;
+    margin: auto;
+    
+   
+    #circle {
+      margin: 10% auto;
+      width: 50%;
+      padding: 0;
+     
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      outline: dashed 2px black;
+      z-index: -1;
+
+    }
+    #circle2 {
+      margin: auto;
+      width: 50%;
+      padding: 0;
+      background: black;
+      width: 100px;
+      height: 100px;
+      z-index: 10;
+      clip-path: polygon(20% 40%, 40% 40%, 40% 20%, 60% 20%, 60% 40%, 80% 40%, 80% 60%, 60% 60%, 60% 80%, 40% 80%, 40% 60%, 20% 60%);
+    }
+
+  }
+  .bot-design {
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+    background-color: black;
+    width: 60%;
+    height: 15%;
+    right: 0;
+    margin-left: 40%;
+    h3 {
+      color: red;
+      text-align: center;
+      margin: auto;      
+    }
+  }
+}
+
+.header{
+  margin: auto;
+  text-align: center;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 5px;
+}

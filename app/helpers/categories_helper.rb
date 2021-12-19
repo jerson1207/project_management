@@ -26,16 +26,27 @@ module CategoriesHelper
     if date != nil
       return date
     else
-      return "No deadline for this category"
+      return "No deadline"
     end
   end
 
   def cat_progress(number)
     if number == nil 
-      return " no task"
+      return " No Task"
     else
-      return number 
+      return number.ceil.to_s + "%"
     end
+  end
+  def total_task(id)
+    category = Category.find(id)
+    total = category.tasks.all.count
+    return total
+  end
+
+  def total_task_complete(id)
+    category = Category.find(id)
+    total = category.tasks.where(complete: true).count
+    return total
   end
 
 end

@@ -2,7 +2,7 @@ class Project < ApplicationRecord
   has_many :categories, dependent: :destroy
 
   validates :name, presence: true
-  validates :name, length: { maximum: 500 }
+  validates :name, length: {  in: 6..20 }
   validates :name, uniqueness:  { case_sensitive: false, message: "already exist" }
   validate :deadline_cannot_be_in_the_past 
   validate :deadline_cannot_be_less_than_category

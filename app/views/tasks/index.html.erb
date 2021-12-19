@@ -3,40 +3,45 @@
 <%= link_to 'back', project_categories_path %>
 <h1>Tasks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Deadline</th>
-      <th>Complete</th>
-      <th>status</th>
-      <th>Timelimit</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.name %></td>
-        <td><%= date_time(task.deadline) %></td>
-        <td><%= task.complete %></td>
-        <td><%= link_to project_category_task_status_path(@project, @category, task) do %>
-          <% if task.complete == false %>
-            <%= "✘ complete"%>
-          <% else %>
-            <%= "✔ completed"%>
+
+
+
+<div class="main">
+  <% @tasks.each do |task| %>
+    <div class="card-task">
+      <div class="top">
+        <div class="deadline"><%= date_time(task.deadline) %></div>
+        <div class="status">
+          <%= link_to project_category_task_status_path(@project, @category, task) do %>
+            <% if task.complete == false %>
+              <%= "✘"%>
+            <% else %>
+              <%= "✔"%>
+            <% end %>
           <% end %>
-        <% end %>
-        </td>
-        <td><%= link_to 'Show', project_category_task_path(@project, @category, task) %></td>
-        <td><%= link_to 'Edit', edit_project_category_task_path(@project, @category, task) %></td>
-        <td><%= link_to 'Destroy', project_category_task_path(@project, @category, task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task', new_project_category_task_path %>
+        </div>
+      </div>
+      <div class="middle"><p><%= task.name %></p></div>
+      <div class="bottom">
+        <ul>
+          <li><%= link_to 'Show', project_category_task_path(@project, @category, task) %></li>
+          <li><%= link_to 'Edit', edit_project_category_task_path(@project, @category, task) %></li>
+          <li><%= link_to 'Destroy', project_category_task_path(@project, @category, task), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to new_project_category_task_path do %>
+    <div class="card-create">
+      <div class="top-design"><h3>New</h3></div>
+      <div class="card-main">
+        <div id="circle">
+          <div id="circle2">
+          </div>
+        </div>      
+      </div>
+      <div class="bot-design"><h3>Category</h3></div>
+    </div>
+  <% end %>
+</div>
