@@ -2,30 +2,31 @@
 
 <%= link_to 'back', project_categories_path %>
 <h1>Tasks</h1>
-
-
-
-
+<%= link_to 'Back', project_categories_path %>
+<div class="header">
+  <h1>Task</h1>
+  <h6>(<%= @category.name %> | <%= deadline(@category.id) %>)</h6>
+</div>
 
 <div class="main">
   <% @tasks.each do |task| %>
-    <div class="card-task">
+    <div class="card-task  ">
       <div class="top">
         <div class="deadline"><%= date_time(task.deadline) %></div>
         <div class="status">
           <%= link_to project_category_task_status_path(@project, @category, task) do %>
             <% if task.complete == false %>
-              <%= "✘"%>
+              <h3><%= "✘" %></h3>
             <% else %>
-              <%= "✔"%>
+              <h3><%= "✔"%></h3>
             <% end %>
           <% end %>
         </div>
       </div>
-      <div class="middle"><p><%= task.name %></p></div>
+      <div class="middle <%= task.complete ? 'uncomplete' : "complete" %>"><span><%= task.name %></span></div>
       <div class="bottom">
         <ul>
-          <li><%= link_to 'Show', project_category_task_path(@project, @category, task) %></li>
+          
           <li><%= link_to 'Edit', edit_project_category_task_path(@project, @category, task) %></li>
           <li><%= link_to 'Destroy', project_category_task_path(@project, @category, task), method: :delete, data: { confirm: 'Are you sure?' } %></li>
         </ul>
@@ -45,3 +46,5 @@
     </div>
   <% end %>
 </div>
+
+ 

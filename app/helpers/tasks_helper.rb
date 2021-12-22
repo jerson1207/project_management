@@ -7,5 +7,15 @@ module TasksHelper
       return date
     end
   end
+
+  def deadline(id)
+    category = Category.find(id)
+    date = category.deadline
+    unless date == nil
+      return date
+    else
+      return "No Deadline"
+    end
+  end
  
 end

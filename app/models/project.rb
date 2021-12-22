@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  belongs_to :user
   has_many :categories, dependent: :destroy
 
   validates :name, presence: true
@@ -6,6 +7,8 @@ class Project < ApplicationRecord
   validates :name, uniqueness:  { case_sensitive: false, message: "already exist" }
   validate :deadline_cannot_be_in_the_past 
   validate :deadline_cannot_be_less_than_category
+
+ 
 
   def deadline_cannot_be_less_than_category
     if self.categories.exists? 

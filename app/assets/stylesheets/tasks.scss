@@ -1,3 +1,4 @@
+
 .card-task {
   width: 300px;
   height: 175px;
@@ -10,7 +11,7 @@
   .top {
     display: flex;
     flex: 15%;
-    .deadline {
+    .deadline { 
       border: 1px solid black;
 
       flex: 90%;
@@ -23,13 +24,35 @@
       background-color: black;
       color: red;
       flex: 10%;
+      h3{
+        text-align: center;
+        color: green;
+      }
+    }
+  }
+  .complete {
+    span::before {
+      content: "☑ ";
+    }
+    span {
+      text-decoration: line-through;
+    }
+  }
+  .uncomplete {
+    span::before {
+      content: "☐ ";
     }
   }
   .middle {
     flex: 70%;
-    margin: auto;
     padding: 15px;
     text-align: justify;
+    
+    
+    span {
+      font-size: 24px;
+    }
+
   
     // border: 1px solid black;
   }
