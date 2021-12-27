@@ -3,12 +3,10 @@ class Project < ApplicationRecord
   has_many :categories, dependent: :destroy
 
   validates :name, presence: true
-  validates :name, length: {  in: 6..20 }
+  validates :name, length: {  in: 4..32 }
   validates :name, uniqueness:  { case_sensitive: false, message: "already exist" }
   validate :deadline_cannot_be_in_the_past 
   validate :deadline_cannot_be_less_than_category
-
- 
 
   def deadline_cannot_be_less_than_category
     if self.categories.exists? 

@@ -2,11 +2,19 @@
   <div class="logo"><h1>Task Management</h1></div>
   <div class="navigation">
     <ul>
-      <li>Home</li>
-      <li>About</li>
+      <li><%= link_to "Home", root_path %> </li>
+      <li><%= link_to "About", about_path %> </li>
     </ul>
   </div>
   <div class="session">
- 
+    <% if user_signed_in? %>
+      <ul>
+        <li><%= link_to "sign out", destroy_user_session_path, method: :delete  %></li>
+      </ul>
+    <% else %>
+      <%= link_to new_user_session_path do %>
+        <button class="sign-in">Sign in</button>
+      <% end %>
+    <% end %>
   </div>
 </div>

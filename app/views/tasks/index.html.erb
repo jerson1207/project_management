@@ -1,50 +1,66 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'back', project_categories_path %>
-<h1>Tasks</h1>
-<%= link_to 'Back', project_categories_path %>
-<div class="header">
-  <h1>Task</h1>
-  <h6>(<%= @category.name %> | <%= deadline(@category.id) %>)</h6>
+
+<div class="head">
+  <div class="back">
+    <%= link_to project_categories_path do %>
+      <button><i class="fas fa-arrow-left"></i> Back</button>
+    <% end %>
+  </div>
+  <div class="section-header">
+    <h1><%= @category.name.upcase %></h1>
+    <h6>( All Task | <%= task_deadline(@category.id) %>)</h6>
+  </div>
+  <div class="create">
+    <%= link_to new_project_category_task_path do %>
+      <button><i class="fas fa-tasks"></i> New Task</button>
+    <% end %>
+  </div>
 </div>
 
-<div class="main">
+<div class="main-task">
+
   <% @tasks.each do |task| %>
-    <div class="card-task  ">
-      <div class="top">
-        <div class="deadline"><%= date_time(task.deadline) %></div>
-        <div class="status">
+  
+  <div class="card-task">
+    <div class="date">
+      <h1 class  = "month"> <%= task_deadline_month(@project.id, @category.id, task.id)%> </h1>
+      <h1 class="day"> <%= task_deadline_day(@project.id, @category.id, task.id) %> </h1>
+      <h1 class="year"> <%= task_deadline_year(@project.id, @category.id, task.id) %> </h1>
+    </div>
+    <div class="body-task">
+      <div class="status">
+        <h1>
           <%= link_to project_category_task_status_path(@project, @category, task) do %>
             <% if task.complete == false %>
-              <h3><%= "✘" %></h3>
+              <i class="far fa-square"></i>
             <% else %>
-              <h3><%= "✔"%></h3>
+              <i class="far fa-check-square"></i>
             <% end %>
-          <% end %>
-        </div>
+          <% end %> 
+        </h1> 
       </div>
-      <div class="middle <%= task.complete ? 'uncomplete' : "complete" %>"><span><%= task.name %></span></div>
-      <div class="bottom">
-        <ul>
-          
-          <li><%= link_to 'Edit', edit_project_category_task_path(@project, @category, task) %></li>
-          <li><%= link_to 'Destroy', project_category_task_path(@project, @category, task), method: :delete, data: { confirm: 'Are you sure?' } %></li>
-        </ul>
+      <div class="name">
+        <p class="<%= task.complete ? "complete" : "uncomplete" %>"> <%= task.name %></p>
+      </div>
+    
+    </div>
+    <div class="action">
+      <div class="edit">
+        <%= link_to edit_project_category_task_path(@project, @category, task) do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+      <div class="delete">
+      <%= link_to project_category_task_path(@project, @category, task), method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <i class="fas fa-trash"></i>
+        <% end %>
       </div>
     </div>
-  <% end %>
-  <%= link_to new_project_category_task_path do %>
-    <div class="card-create">
-      <div class="top-design"><h3>New</h3></div>
-      <div class="card-main">
-        <div id="circle">
-          <div id="circle2">
-          </div>
-        </div>      
-      </div>
-      <div class="bot-design"><h3>Category</h3></div>
-    </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
+
+
 
  

@@ -1,10 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Back', projects_path %>
-<div class="header">
-  <h1>Category</h1>
-  <h6>(<%= @project.name %> | <%= project_deadline(@project.id) %>)</h6>
+
+<div class="head">
+  <div class="back">
+    <%= link_to projects_path do %>
+      <button><i class="fas fa-arrow-left"></i> Back</button>
+    <% end %>
+  </div>
+  <div class="section-header">
+    <h1><%= @project.name.upcase %></h1>
+    <h6>( All Category | <%= project_deadline(@project.id) %>)</h6>
+  </div>
+  <div class="create">
+    <%= link_to new_project_category_path(@project) do %>
+      <button><i class="fas fa-tasks"></i> New Category</button>
+    <% end %>
+  </div>
 </div>
+
+
+
+
+
+
+
 
 <div class="main">
  <% @categories.each do |category| %>
@@ -23,26 +42,22 @@
       <div class="actions">
         <ul>
           <li><%= link_to 'View Task', project_category_tasks_path(@project, category) %></li>
-          <li><%= link_to 'Edit', edit_project_category_path(@project, category) %></li>
-          <li><%= link_to 'Destroy', project_category_path(@project, category), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          <li>
+            <%= link_to edit_project_category_path(@project, category) do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to project_category_path(@project, category), method: :delete, data: { confirm: 'Are you sure?' }  do%>
+              <i class="fas fa-trash"></i>
+            <% end %>     
+          </li>
         </ul>
       </div>
     </div>
   </div>
 <% end %>
 
-<%= link_to new_project_category_path(@project) do %>
-  <div class="card-create">
-    <div class="top-design"><h3>New</h3></div>
-    <div class="card-main">
-      <div id="circle">
-        <div id="circle2">
-        </div>
-      </div>      
-    </div>
-    <div class="bot-design"><h3>Category</h3></div>
-  </div>
-<% end %>
 </div>
 
 

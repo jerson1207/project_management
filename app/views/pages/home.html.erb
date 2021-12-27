@@ -1,0 +1,14 @@
+<p>view all task</p>
+
+<% @projects.all.each do |p| %>
+    <% p.categories.all.each do |c| %>
+      <% c.tasks.all.where(complete: false).each do |t| %>
+        <h1> <%= t.name %> </h1> <br>
+      <% end %>
+     <% end %>
+  </ul>
+
+<% end %>
+
+---------------
+<% @categories%>

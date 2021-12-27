@@ -1,43 +1,61 @@
   <p id="notice"><%= notice %></p>
-  <div class="header"><h1>Projects</h1></div>
-  <div class="main">
-    <% @projects.each do |project| %>
-      <div class="card">
-        <div class="left">
-          <h2><%= deadline(project.id) %> </h2>
-          <div class="title">
-            <h1><%= project.name %></h1>
-          </div>
-        </div>
-        <div class="right">
-          <div class="progress">
-            <h1><%= pro_progress(project.progress) %></h1>
-            <h6><%= total_complete(project.id) %> of <%= total_category(project.id)%> </h6>
-          </div>
-          <div class="actions">
-            <ul>
-              <li><%= link_to 'View Category', project_categories_path(project) %></li>
-              <li><%= link_to 'Ed', edit_project_path(project) %></li>
-              <li><%= link_to 'De', project, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <%= link_to new_project_path do %>
-      <div class="card-create">
-        <div class="top-design"><h3>New</h3></div>
-        <div class="card-main">
-          <div id="circle">
-            <div id="circle2">
+  <% if user_signed_in? %>
+    <div class="section-header"><h1>All Projects</h1></div>
+    <div class="main">
+      <% @projects.each do |project| %>
+        <div class="card">
+          <div class="left">
+            <h2><%= project_deadline(project.id) %> </h2>
+            <div class="title">
+              <h1><%= project.name %></h1>
             </div>
           </div>
-            
+          <div class="right">
+            <div class="progress">
+              <h1><%= pro_progress(project.progress) %></h1>
+              <h6><%= total_complete(project.id) %> of <%= total_category(project.id)%> </h6>
+            </div>
+            <div class="actions">
+              <ul>
+                <li>
+                  <%= link_to project_categories_path(project) do %>
+                    <%= "View Category" %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to edit_project_path(project) do %>
+                    <i class="fas fa-edit"></i>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to project, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <i class="fas fa-trash"></i>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="bot-design"><h3>Project</h3></div>
+      <% end %>
+      <%# <div class="card"> %>
+        <%= link_to new_project_path do %>
+          <div class="card-create">
+            <div class="top-design"><h3>New</h3></div>
+            <div class="card-main">
+              <div id="circle">
+                <div id="circle2">
+                </div>
+              </div>
+                
+            </div>
+            <div class="bot-design"><h3>Project</h3></div>
 
-      </div>
-    <% end %>
-  </div>
+          </div>
+        <% end %>
+      <%# </div> %>
+    </div>
+  <% else %>
+    <%= render "shares/home" %>  
+  <% end %>
 
 

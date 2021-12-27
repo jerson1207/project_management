@@ -8,6 +8,10 @@
     width: 50%;   
     h2 {
       font-size: 14px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 100;
+      text-align: center;
+      padding-right: 20%;
       border: 1px solid black;
       margin-top: 0;
       background-color: black;
@@ -20,7 +24,9 @@
       font-size: 18px;
       order: 9;
       margin: 30% 10%;
-      
+      text-transform: capitalize;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
     }
   }
   .right {
@@ -36,7 +42,10 @@
       order: 1;
       h1 {
         font-size: 28px;  
-        text-align: center;   
+        text-align: center; 
+        text-transform: capitalize;
+        font-family: 'Poppins', sans-serif; 
+        font-weight: 800; 
       }
       h6 {
         text-align: center;
@@ -52,17 +61,23 @@
       margin-bottom: 0;
       clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
       background-color: black;
-      color: red;
       display: flex;  
-      border: 1px solid black;
+
       ul {
         margin: auto;
       }
       ul li{
-        display: inline;  
+        display: inline; 
       }
       ul:first-child {
         margin-left: 25%;
+      }
+
+      ul li a:active {
+        color: red;
+      }
+      ul li a:visited {
+        color: red;
       }
 
 
@@ -137,13 +152,4 @@
   }
 }
 
-.header{
-  margin: auto;
-  text-align: center;
-}
 
-.main {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px 5px;
-}

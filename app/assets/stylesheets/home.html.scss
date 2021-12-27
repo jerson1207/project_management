@@ -1,0 +1,46 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  align-content: center;
+  .left {
+    width: 50%;
+    height: 100%;  
+    h1 {
+      font-size: 40px;
+      font-family: 'Encode Sans', sans-serif;
+      font-weight: 900;
+      color: blue;
+      word-spacing: 20px;
+    }
+    h3 {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 100;
+      font-size: 14px;
+      width: 65%;
+      text-align: justify;
+      margin: 20px 0;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 150px;
+      height: 55px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      background-color: skyblue;
+      color: aliceblue;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+  }
+  .left:first-child {
+    margin-top: 100px;
+
+  }
+  .right {
+    width: 50%;
+  }
+}
+

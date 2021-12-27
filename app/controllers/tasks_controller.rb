@@ -28,56 +28,13 @@ class TasksController < ApplicationController
   # POST /tasks or /tasks.json
   def create
     @project = Project.find(params[:project_id])
-    @category = @project.categories.find(params[:category_id])
-    @task = @category.tasks.new(task_params)
-    category_deadline = Task.task_deadline(params[:category_id])
-    project_deadline = Category.project_deadline(params[:project_id])
-    if @task.deadline.present? && category_deadline != nil   
-      if (category_deadline < @task.deadline) && (project_deadline < @task.deadline) 
-        @project.deadline = @task.deadline
-        @project.save
-      elsif category_deadline < @task.deadline 
-        @category.deadline = @task.deadline
-        @category.save
-      end
-    elsif @task.deadline.present? && category_deadline == nil &&  project_deadline == nil
-      @category.deadline = @task.deadline
-      @category.save
-      @project.deadline = @task.deadline
-      @project.save
-    elsif @task.deadline.present? && category_deadline == nil &&  project_deadline != nil
-      if project_deadline < @task.deadline 
-        @category.deadline = @task.deadline
-        @category.save
-        @project.deadline = @task.deadline
-        @project.save
-      end
-    end
+    @category = Project.find(params[:project_id]).categories.find(params[:category_id])
+    @task = current_user.projects.find(params[:project_id]).categories.find(params[:category_id]).tasks.new(task_params)
     respond_to do |format|
       if @task.save
-        task_complete = @category.tasks.where(complete: true).count.to_f
-        task_total = @category.tasks.all.count.to_f  
-        category_result = task_complete/task_total
-        @category.progress = (category_result * 100)
-        @category.save
-        if @category.progress == 100
-          @category.complete = true 
-          @category.save    
-        else
-          @category.complete = false 
-          @category.save
-        end
-        cat_complete = @project.categories.where(complete: true).count.to_f
-        cat_total = @project.categories.all.count.to_f
-        project_result = cat_complete/cat_total
-        @project.progress = (project_result * 100)
-        @project.save
-        if @project.progress == 100
-          @project.complete = true
-          @project.save
-        else
-          @project.complete = false
-          @project.save
+        Task.update_progress(@project.id, @category.id)
+        if @task.deadline.present?
+          Task.update_deadline(@project.id, @category.id, @task.deadline)
         end
         format.html { redirect_to project_category_tasks_path, notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
@@ -92,52 +49,9 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        category_deadline = Task.task_deadline(params[:category_id])
-        project_deadline = Category.project_deadline(params[:project_id])
-        if @task.deadline.present? && category_deadline != nil   
-          if (category_deadline < @task.deadline) && (project_deadline < @task.deadline) 
-            @project.deadline = @task.deadline
-            @project.save
-          elsif category_deadline < @task.deadline 
-            @category.deadline = @task.deadline
-            @category.save
-          end
-        elsif @task.deadline.present? && category_deadline == nil &&  project_deadline == nil
-          @category.deadline = @task.deadline
-          @category.save
-          @project.deadline = @task.deadline
-          @project.save
-        elsif @task.deadline.present? && category_deadline == nil &&  project_deadline != nil
-          if project_deadline < @task.deadline 
-            @category.deadline = @task.deadline
-            @category.save
-            @project.deadline = @task.deadline
-            @project.save
-          end
-        end
-        task_complete = @category.tasks.where(complete: true).count.to_f
-        task_total = @category.tasks.all.count.to_f  
-        category_result = task_complete/task_total
-        @category.progress = (category_result * 100)
-        @category.save
-        if @category.progress == 100
-          @category.complete = true 
-          @category.save    
-        else
-          @category.complete = false 
-          @category.save
-        end
-        cat_complete = @project.categories.where(complete: true).count.to_f
-        cat_total = @project.categories.all.count.to_f
-        project_result = cat_complete/cat_total
-        @project.progress = (project_result * 100)
-        @project.save
-        if @project.progress == 100
-          @project.complete = true
-          @project.save
-        else
-          @project.complete = false
-          @project.save
+        Task.update_progress(@project.id, @category.id)
+        if @task.deadline.present?
+          Task.update_deadline(@project.id, @category.id, @task.deadline)
         end
         format.html { redirect_to project_category_tasks_path, notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }

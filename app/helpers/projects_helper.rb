@@ -1,22 +1,6 @@
 module ProjectsHelper
 
-  def deadline(id)
-    project = Project.find(id)
-    date = project.deadline
-    status = project.complete
 
-    unless status == true
-      if date != nil
-        return date
-      else
-        return "No Deadline"
-      end
-    else
-      return "Completed"
-    end
-
-    
-  end
 
   def pro_progress(number)
     if number == nil 
