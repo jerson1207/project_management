@@ -9,11 +9,9 @@ Rails.application.routes.draw do
       end 
     end
   end  
-  # root "projects#index"
-  root "pages#home"
+  root "projects#index"
   get 'about', to: "pages#about"
-  get 'home', to: "pages#home"
-  get "all", to: "task_only#all"
-  get "complete", to: "task_only#complete"
-  get "uncomplete", to: "task_only#uncomplete"
+  get 'all_tasks', to: "pages#all_tasks"
+  get 'completed_tasks', to: "pages#completed_tasks"
+  get 'uncomplete_tasks', to: "pages#uncomplete_tasks"
 end

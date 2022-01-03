@@ -1,3 +1,4 @@
+<div class="form">
 <%= form_with(model: [@project, @category]) do |form| %>
   <% if @category.errors.any? %>
     <div id="error_explanation">
@@ -18,10 +19,12 @@
 
   <div class="field">
     <%= form.label :deadline %>
-    <%= form.date_select :deadline, :include_blank => true %>
+    <%= form.date_field :deadline, :include_blank => true %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+</div>

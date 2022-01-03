@@ -1,16 +1,34 @@
 <div class="header">
-  <div class="logo"><h1>Task Management</h1></div>
+  <div class="logo"><h1> 
+    <%= link_to root_path do %> 
+      <h1><span>T</span>ask <span>M</span>anager</h1>
+    <% end %>
+  </h1></div>
   <div class="navigation">
+    <% if user_signed_in? %>
+      <%= Time.now.strftime("%^a %B %d, %Y | %I:%M %p") %>
+    <% else %>
     <ul>
       <li><%= link_to "Home", root_path %> </li>
       <li><%= link_to "About", about_path %> </li>
     </ul>
+    <% end %>
+    
   </div>
   <div class="session">
     <% if user_signed_in? %>
-      <ul>
-        <li><%= link_to "sign out", destroy_user_session_path, method: :delete  %></li>
-      </ul>
+    <div class="dropdown">
+      <span class="dropbtn"><%= current_user.email %> <i class="fas fa-caret-down"></i></span>
+      <div class="dropdown-content">
+        <%= link_to "Home", root_path %></a>
+        <%= link_to "All Tasks", all_tasks_path %></a>
+        <%= link_to "Complete Task", completed_tasks_path %></a>
+        <%= link_to "Uncomplete Task", uncomplete_tasks_path %></a>
+        <%= link_to "Edit Profile", edit_user_registration_path %></a>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete  %></a>
+      </div>
+    </div>
+
     <% else %>
       <%= link_to new_user_session_path do %>
         <button class="sign-in">Sign in</button>

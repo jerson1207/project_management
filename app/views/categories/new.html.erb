@@ -1,3 +1,9 @@
-<h1>New Category</h1>
-
+<div class="section-header">
+  <h1>New Category</h1>
+</div>
+<div class="back">
+<%= link_to project_categories_path do %>
+  <i class="fas fa-arrow-left"></i> BACK
+    <% end %>
+</div>
 <%= render 'categories/form' %>

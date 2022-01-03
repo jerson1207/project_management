@@ -1,0 +1,12 @@
+.tasks_filter {
+  border: 1px solid #000;
+  width: 50%;
+  .deadline {
+    border: 1px solid #000;
+    color: red;
+  }
+  .content {
+    display: flex;
+    
+  }
+}

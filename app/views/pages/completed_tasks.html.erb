@@ -1,0 +1,21 @@
+<h1>Completed Tasks</h1>
+<div class="tasks_filter">
+<% @project.each do |p| %>
+  <% p.categories.each do |c| %>
+    <% c.tasks.where(complete: true).each do |t| %>
+      <div class="all_tasks">
+        <div class="deadline"><p><%# t.deadline %> June 5, 2021</p></div>
+        <div class="content">
+          <div class="complete"><%= t.complete %> </div>
+          <div class="complete"> <%= t.name %> </div>
+        </div>
+        <div class="pages">Project / Category</div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+  
+
+</div>

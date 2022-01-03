@@ -1,3 +1,4 @@
+<div class="forgot_password">
 <h2>Forgot your password?</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
@@ -13,4 +14,13 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
+<div class="actions text-right">
+  <h6 class = "or"><span>OR</span></h6>
+</div>
+
+<div class="links">
+  <%= render "devise/shared/links" %>
+</div>
+
+</div>

@@ -63,11 +63,15 @@
       ul:first-child {
         margin-left: 15%;
       }
+      
       ul li a:active {
         color: red;
       }
       ul li a:visited {
         color: red;
+      }
+      ul li .fas {
+        color: var(--primary);
       }
 
     }

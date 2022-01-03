@@ -1,7 +1,5 @@
 module ProjectsHelper
 
-
-
   def pro_progress(number)
     if number == nil 
       return "No category"

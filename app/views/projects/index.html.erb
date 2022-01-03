@@ -7,13 +7,13 @@
           <div class="left">
             <h2><%= project_deadline(project.id) %> </h2>
             <div class="title">
-              <h1><%= project.name %></h1>
+              <h1 class="<%= project.complete ? "completed" : "incomplete" %>"><%= project.name %></h1>
             </div>
           </div>
           <div class="right">
             <div class="progress">
-              <h1><%= pro_progress(project.progress) %></h1>
-              <h6><%= total_complete(project.id) %> of <%= total_category(project.id)%> </h6>
+              <h1 class="<%= project.complete ? "completed" : "incomplete" %>"> <%= pro_progress(project.progress) %></h1>
+              <h6 class="<%= project.complete ? "completed" : "incomplete" %>"><%= total_complete(project.id) %> of <%= total_category(project.id)%> </h6>
             </div>
             <div class="actions">
               <ul>

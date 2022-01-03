@@ -21,6 +21,10 @@ module ApplicationHelper
     end
   end
 
+
+end
+
+
   # def category_deadline(id)
   #   project = Project.find(id)
   #   date = project.deadline
@@ -51,6 +55,5 @@ module ApplicationHelper
   #   end
   # end
 
-end
 
 

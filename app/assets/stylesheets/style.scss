@@ -7,6 +7,24 @@
   text-decoration: none;
 }
 
+:root {
+  --background: #fff;
+  --black: #000;
+  --primary: #D00000;
+  --btn: #D00000;
+  --btn_hover: rgba(208, 0, 0, 0.8);
+  --btn_txt: rgb(240, 255, 242);
+  --completed: rgb(52, 228, 52);
+}
+
+.completed {
+  color: var(--completed);
+}
+
+body{
+  background-color: var(--background);
+}
+
 .container {
   width: 80vw;
   margin: auto;
@@ -22,6 +40,14 @@
       font-family: 'Poppins', sans-serif;
       font-weight: 400;
       font-size: 24px;
+      color: var(--black)
+      
+    }
+    .logo span {
+      color: var(--primary);
+    }
+    .logo h1:hover {
+      color: var(--black)
     }
     .navigation ul li{
       display: inline;
@@ -38,8 +64,8 @@
       font-family: 'Roboto', sans-serif;
       font-weight: 100;
       font-size: 14px;
-      background-color: skyblue;
-      color: aliceblue;
+      background-color: var(--btn);
+      color: var(--btn_txt);
       border-radius: 15px;
       cursor: pointer;
     }
@@ -56,20 +82,49 @@
   }
 }
 
+// dropdown
+// .dropbtn {
+//   background-color: #04AA6D;
+//   color: white;
+//   padding: 16px;
+//   font-size: 16px;
+//   border: none;
+// }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+// .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+// end
 .main {
-  width: 100%;
-  // border: 1px solid #000;
   display: grid;
   grid-template-columns: repeat(3, 300px);
-  // gap: 1  50px;
   justify-content: space-between;  
   row-gap: 25px;
-  // justify-items: stretch;
-  // column-gap: auto;  
-  // grid-template-columns: 1fr 1fr 1fr;
-  // justify-content: space-around;
-  // align-content: space-evenly; 
-
+  width: 100%;
 }
 
 .head {
@@ -83,11 +138,13 @@
     letter-spacing: 3px;
   }
   button {
-    width: 100px;
-    height: 30px;
+    width: 125px;
+    height: 35px;
     border-radius: 5px;
-    border: 1px solid aqua;
-    background-color: aqua;
+    border: 1px solid var(--btn_hover);
+    background-color: var(--btn);
+    color: var(--background);
+    cursor: pointer;
   }
 }
 
@@ -111,7 +168,20 @@
 
 
   input[type=text], select {
+    font-size: 18px;
     width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  textarea {
+    resize: none;
+    width: 100%;
+    font-size: 18px;
+    height: 150px;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -131,7 +201,45 @@
   
   input[type=submit] {
     width: 100%;
-    background-color: #4CAF50;
+    background-color: var(--btn);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  input[type=submit]:hover {
+    background-color: var(--btn_hover);
+  }
+}
+
+
+.login, .sign_up, .forgot_password, .edit_profile {
+  width: 50%;
+  margin: 70px auto;
+  padding: 15px 20px;
+  background-color: #f0f0f0;
+  box-shadow: 5px 10px #888888;
+  border-radius: 5px;
+  h2 {
+    text-align: center;
+  }
+  input[type=email], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+ 
+  input[type=submit] {
+    width: 100%;
+    background-color: var(--btn);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -141,6 +249,22 @@
   }
   
   input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: var(--btn_hover);
+  }
+
+  .or {
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid #000; 
+    line-height: 0.1em;
+    margin: 30px 0 20px;
+  }
+  
+  .or span {
+    background:#fff; 
+    padding:0 10px;  
+  }
+  .links {
+    text-align: center;
   }
 }

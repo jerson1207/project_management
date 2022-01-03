@@ -4,8 +4,18 @@ class PagesController < ApplicationController
 
   end
   def home
-
     @projects = current_user.projects.all
-    
+  end
+
+  def all_tasks
+    @project = current_user.projects.all
+  end
+  
+  def completed_tasks
+    @project = current_user.projects.all
+  end
+
+  def uncomplete_tasks
+    @project = current_user.projects.all
   end
 end
