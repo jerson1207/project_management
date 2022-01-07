@@ -21,7 +21,11 @@ class Project < ApplicationRecord
   def category_max_deadline
     cat_deadline = Project.find(self.id).categories.where(deadline: Category.maximum("deadline"))
     if cat_deadline.count != 0
-      cat_deadline.first.deadline
+      if cat_deadline.first.deadline != nil
+        return cat_deadline.first.deadline
+      else
+        return false
+      end
     else
       return false
     end

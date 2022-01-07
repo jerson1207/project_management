@@ -1,6 +1,4 @@
 <p id="notice"><%= notice %></p>
-
-
 <div class="head">
   <div class="back">
     <%= link_to project_categories_path do %>
@@ -9,7 +7,6 @@
   </div>
   <div class="section-header">
     <h1><%= @category.name.upcase %></h1>
-    <h6>( All Task | <%= task_deadline(@category.id) %>)</h6>
   </div>
   <div class="create">
     <%= link_to new_project_category_task_path do %>
@@ -18,49 +15,37 @@
   </div>
 </div>
 
-<div class="main-task">
-
-  <% @tasks.each do |task| %>
-  
-  <div class="card-task">
-    <div class="date">
-      <h1 class  = "month"> <%= task_deadline_month(@project.id, @category.id, task.id)%> </h1>
-      <h1 class="day"> <%= task_deadline_day(@project.id, @category.id, task.id) %> </h1>
-      <h1 class="year"> <%= task_deadline_year(@project.id, @category.id, task.id) %> </h1>
-    </div>
-    <div class="body-task">
-      <div class="status">
-        <h1>
-          <%= link_to project_category_task_status_path(@project, @category, task) do %>
-            <% if task.complete == false %>
-              <i class="far fa-square"></i>
-            <% else %>
-              <i class="far fa-check-square"></i>
+<div class="task-border">
+  <% @tasks.each do |t| %>    
+      <div class="task ">
+        <div class="left">
+            <div class="left-sec-1">Deadline: <%= date_filter(t.deadline) %></div>
+          <div class="left-sec-2"> <%= t.name %></div> 
+        </div>
+        <div class="right">
+          <div class="right-sec-1">
+            <%= link_to project_category_task_status_path(@project, @category, t) do %>
+              <% if t.complete == false %>
+                <i class="far fa-square"></i>
+              <% else %>
+                <i class="far fa-check-square"></i>
+              <% end %>
             <% end %>
-          <% end %> 
-        </h1> 
+          </div>
+          <div class="right-sec-2">
+            <%= link_to edit_project_category_task_path(@project, @category, t) do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            </div>
+          <div class="right-sec-3">           
+            <%= link_to project_category_task_path(@project, @category, t), method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fas fa-trash"></i>
+            <% end %>               
+          </div>
+        </div>
       </div>
-      <div class="name">
-        <p class="<%= task.complete ? "complete" : "uncomplete" %>"> <%= task.name %></p>
-      </div>
-    
-    </div>
-    <div class="action">
-      <div class="edit">
-        <%= link_to edit_project_category_task_path(@project, @category, task) do %>
-          <i class="fas fa-edit"></i>
-        <% end %>
-      </div>
-      <div class="delete">
-      <%= link_to project_category_task_path(@project, @category, task), method: :delete, data: { confirm: 'Are you sure?' } do %>
-        <i class="fas fa-trash"></i>
-        <% end %>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-
+  <% end %>
+</div>
 
 
  

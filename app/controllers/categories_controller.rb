@@ -24,28 +24,44 @@ class CategoriesController < ApplicationController
 
   # POST /categories or /categories.json
   def create
-    @project = current_user.projects.find(params[:project_id])
-    @category = @project.categories.new(category_params)
-    
-    if @category.save
-      if @category.deadline.present? 
-        Category.update_deadline(@project.id, @category.deadline)
+    # @project = current_user.projects.find(params[:project_id]) 
+    # @category = @project.categories.new(category_params)
+    @project = Project.find(params[:project_id])
+    @category = current_user.projects.find(params[:project_id]).categories.new(category_params)
+    respond_to do |format|
+      if @category.save
+        if @category.deadline.present? 
+          Category.update_deadline(@project.id, @category.deadline)
+        end
+        Category.update_progress(@project.id)
+
+        format.html { redirect_to project_category_tasks_path(@project.id, @category.id), notice: "Category was successfully created." }
+        format.json { render :show, status: :created, location: @category }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
-      Category.update_progress(@project.id)
-      redirect_to project_category_tasks_path(@project.id, @category.id), notice: "Category was successfully created." 
     end
+    
   end
 
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
     @project = Project.find(params[:project_id])
     @category = @project.categories.find(params[:id])
-    if @category.update(category_params)
-      if @category.deadline.present? 
-        Category.update_deadline(@project.id, @category.deadline)
+    respond_to do |format|
+      if @category.update(category_params)
+        if @category.deadline.present? 
+          Category.update_deadline(@project.id, @category.deadline)
+        end
+        format.html { redirect_to project_categories_path, notice: "Category was successfully updated." }
+        format.json { render :show, status: :ok, location: @category }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
-      redirect_to project_categories_path, notice: "Category was successfully updated." 
     end
+    
   end
 
   # DELETE /categories/1 or /categories/1.json

@@ -25,15 +25,28 @@ class ProjectsController < ApplicationController
   def create
     @user = current_user
     @project = @user.projects.new(project_params)
-    if @project.save
-      redirect_to project_categories_path(@project.id), notice: "Project was successfully created." 
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to project_categories_path(@project.id), notice: "Project was successfully created." }
+        format.json { render :show, status: :created, location: @project }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @project.errors, status: :unprocessable_entity } 
+      end
     end
+    
   end
 
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
-    if @project.update(project_params)
-      redirect_to projects_path, notice: "Project was successfully updated."
+    respond_to do |format|
+      if @project.update(project_params)
+        format.html { redirect_to projects_path, notice: "Project was successfully updated."}
+        format.json { render :show, status: :ok, location: @project }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
     end
   end
 

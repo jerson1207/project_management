@@ -1,21 +1,41 @@
-<h1>Today's Task</h1>
-<div class="tasks_filter">
-<% @project.each do |p| %>
-  <% p.categories.each do |c| %>
-    <% c.tasks.each do |t| %>
-      <div class="all_tasks">
-        <div class="deadline"><p><%# t.deadline %> June 5, 2021</p></div>
-        <div class="content">
-          <div class="complete"><%= t.complete %> </div>
-          <div class="complete"> <%= t.name %> </div>
-        </div>
-        <div class="pages">Project / Category</div>
-      </div>
-    <% end %>
-  <% end %>
-<% end %>
-
-
-  
-
+<div class="task-header">
+  <h1>All Tasks</h1>
 </div>
+
+<div class="task-border">
+    <% @project.each do |p| %>    
+      <% p.categories.each do |c| %>
+        <% c.tasks.each do |t| %>
+        <div class="task ">
+          <div class="left">
+            <div class="left-sec-1"><%= link_to "Project", projects_path %> <i class="fas fa-chevron-right"></i> <%= link_to "Category", project_categories_path(c.id) %> | Deadline: <%= date_filter(t.deadline) %></div>
+            <div class="left-sec-2"> <%= t.name %></div> 
+          </div>
+          <div class="right">
+            <div class="right-sec-1">
+              <%= link_to project_category_task_status_path(p.id, c.id, t.id) do %>
+                <% if t.complete == false %>
+                  <i class="far fa-square"></i>
+                <% else %>
+                  <i class="far fa-check-square"></i>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="right-sec-2">
+              <%= link_to edit_project_category_task_path(p.id, c.id, t.id) do %>
+                <i class="fas fa-edit"></i>
+              <% end %>
+              </div>
+            <div class="right-sec-3">           
+              <%= link_to project_category_task_path(p.id, c.id, t.id), method: :delete, data: { confirm: 'Are you sure?' } do %>  
+                <i class="fas fa-trash"></i>
+              <% end %>                
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+    <% end %>
+</div>
+
+

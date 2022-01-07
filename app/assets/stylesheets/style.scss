@@ -20,6 +20,9 @@
 .completed {
   color: var(--completed);
 }
+.incomplete {
+  color: var(--black);
+}
 
 body{
   background-color: var(--background);

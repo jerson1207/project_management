@@ -1,205 +1,91 @@
+.tasks_filter {
+  border: 1px solid #000;
+  width: 50%;
+  .deadline {
+    border: 1px solid #000;
+    color: red;
+  }
+  .content {
+    display: flex;
+    
+  }
+}
 
+.task-header h1 {
+  text-align: center;
+  margin-bottom: 5px;
+}
 
-.main-task {
+.task-border {
+  background-color: #dddd;
   width: 80%;
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  .card-task {
-    border: 1px solid #000;
+  .task {
+    margin: 10px auto;
+    border-radius: 5px;
+    width: 90%;
     display: flex;
-    width: 100%;
-    min-height: 100px;
-    .date {
-      min-height: 100px;
-      width: 10%;
-      border: #000 solid 1px;
-      background-color: #000;
-      .month {
-        color:  #fff;
-        background-color: #000;
-        min-height: 25px;
-        font-size: 18px;
-        text-align: center;
-
-      }
-      .day {
-        color: red;
-        // min-height: 50px;
-        height: 50px;
-        font-size: 40px;
-        text-align: center;
-        margin: auto;
-        background-color: #fff;
-        // border: 1px solid #000;
-        
-      }
-      .year {
-        color:  #fff;
-        background-color: #000;
-        min-height: 25px;
-        font-size: 18px;
-        text-align: center;
-      }
+    height: 70px;
+    border: 1px solid #000;
+    background-color: #fff;
+    .left {
+      padding: 5px;
+      border: 1px solid #000;
+      width: 95%;
     }
-    .body-task {
-      display: flex;
-      flex-direction: row;
-      width: 85%;
-      .status {
-        color: #000;
-        position: relative;
-        height: 100%;
-        width: 5%;
-        h1{
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          
-        }
-        .far {
-          color: black;
-          font-size: 18px;
-          text-align: center;
-        }
-
-      }
-      .name {
-        // position: relative;
-        width: 95%;
-        p {
-          text-justify: inter-word;
-          font-size: 18px;
-          padding: 5px;
-          // width: 95%;
-          // position: absolute;
-          // top: 50%;
-          // left: 0%;
-          // transform: translate(0%, -50%);
-          min-height: 25px;
-        }
-        .complete {
-          color: lightgray;
-        }
-        .uncomplete {
-          color: #000
-        }
-      }
-    }
-    .action {
+    .right {
+      border: 1px solid #000;
       width: 5%;
       display: flex;
       flex-direction: column;
-      .edit {
-        background-color: #000;
-        text-align: center;
-        height: 50%;
-        border-bottom: #fff 1px solid;
-        .fas {
-          transform: translateY(50%);
-          margin: auto;
-          color: #fff;
-        }
-        
+      background-color: #000;
+      .right-sec-1, .right-sec-2, .right-sec-3 {
+        border: 1px solid #000;
+        margin: auto;
+        color: aliceblue;
       }
-      .delete {
-        background-color: #000;
-        height: 50%;
-        text-align: center; 
-        border-top: #fff 1px solid;
-        .fas {
-          transform: translateY(50%);
-          margin: auto;
-          color: #fff;
-        }
-      }
-    }
-  }
-}
-
-
-
-
-
-
-
-
-
-
-.card-task2 {
-  width: 300px;
-  height: 175px;
-  border: 1px solid black;
-  display: flex;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  .top {
-    display: flex;
-    flex: 15%;
-    .deadline { 
-      border: 1px solid black;
-
-      flex: 90%;
-      color: red;
-      background-color: black;
-      clip-path: polygon(0 0, 60% 0%, 40% 100%, 0% 100%);
-    }
-    .status {
-      border: 1px solid black;
-      background-color: black;
-      color: red;
-      flex: 10%;
-      h3{
-        text-align: center;
-        color: green;
-      }
-    }
-  }
-  .complete {
-    span::before {
-      content: "☑ ";
-    }
-    span {
-      text-decoration: line-through;
-    }
-  }
-  .uncomplete {
-    span::before {
-      content: "☐ ";
-    }
-  }
-  .middle {
-    flex: 70%;
-    padding: 15px;
-    text-align: justify;
-    
-    
-    span {
-      font-size: 24px;
-    }
-
   
-    // border: 1px solid black;
-  }
-  .bottom {
-    clip-path: polygon(50% 0, 100% 0, 100% 100%, 30% 100%);
-    background-color: black;
-    color: red;
-    flex: 15%;
-    font-size: 12px;
-    ul {
-      margin: auto;
-      transform: translate(50%, 50%);
-    }
-    ul li{
-      display: inline;  
-    }
-    ul:first-child {
-      margin-left: 15%;
+      .right-sec-1 a:active {
+        color: aliceblue;
+      }
+      .right-sec-1 a:visited {
+        color: aliceblue;
+      }
+      .right-sec-1 a:hover {
+        color: red;
+      }
+      .right-sec-1 a:link {
+        color: aliceblue;
+      }
+  
+      .right-sec-2 a:active {
+        color: aliceblue;
+      }
+      .right-sec-2 a:visited {
+        color: aliceblue;
+      }
+      .right-sec-2 a:hover {
+        color: red;
+      }
+      .right-sec-2 a:link {
+        color: aliceblue;
+      }
+  
+      .right-sec-3 a:active {
+        color: aliceblue;
+      }
+      .right-sec-3 a:visited {
+        color: aliceblue;
+      }
+      .right-sec-3 a:hover {
+        color: red;
+      }
+      .right-sec-3 a:link {
+        color: aliceblue;
+      }
+  
     }
   }
 }

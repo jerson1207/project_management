@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users do
-    
-  end
+  root "projects#index"
+  devise_for :users 
   resources :projects, except: :show do
     resources :categories, except: :show do
       resources :tasks, except: :show do
@@ -9,7 +8,6 @@ Rails.application.routes.draw do
       end 
     end
   end  
-  root "projects#index"
   get 'about', to: "pages#about"
   get 'all_tasks', to: "pages#all_tasks"
   get 'completed_tasks', to: "pages#completed_tasks"

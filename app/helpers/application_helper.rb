@@ -21,6 +21,14 @@ module ApplicationHelper
     end
   end
 
+  def date_filter(deadline)
+    if deadline.present?
+      return deadline
+    else
+      return "No deadline"
+    end
+  end
+
 
 end
 
