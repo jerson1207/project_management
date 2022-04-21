@@ -1,24 +1,16 @@
-# README
+# Task Managment App
+https://task-management-prototype.herokuapp.com/
+User name: user1@test.com
+Password: 123456
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Hi There 👋
+This PROJECT MANAGEMENT is one of many projects I created during my bootcamp.
 
-Things you may want to cover:
+##### List of what you can do with this website
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+###### This Task Management is designed for user to have an account, whereas they can save their activities.
+###### User can create, delete and update a PROJECT. From project it can create, delete and delete a CATEGORY. And from category it can create, delete and update a TASK
+###### User can create, remove and update deadline.
+###### User can view progress of projects and categories. Progress is automaticall calculated base on the task you tag as complete.
+###### User can also view the nuber of categories completed and total categories from project page.
+###### User can also view the nuber of tasks completed and total task from category page page.
